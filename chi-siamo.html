@@ -17,6 +17,7 @@
 </head>
 <body class="inner">
 <a class="skip" href="#main">Passa al contenuto principale</a>
+<div class="progress" data-progress aria-hidden="true"></div>
 
 <header class="site-header" data-header>
   <a class="brand" href="index.html" aria-label="Green Designers – Home"><img src="assets/img/logo-bianco.png" alt="Green Designers" width="237" height="237"></a>
@@ -37,37 +38,15 @@
 </nav>
 <main id="main">
 
-<section class="page-top"><div class="page-top-in">
-  <p class="eyebrow" data-reveal>Chi Siamo</p>
-  <h1 class="display" data-reveal style="--d:80ms">Un percorso condiviso, radici comuni</h1>
-  <div class="prose two-col" data-reveal style="--d:160ms">
-    <p>Green Designer nasce dall’esperienza condivisa di due professionisti che, dopo anni di lavoro nella stessa azienda, hanno deciso di dare forma a un progetto tutto loro.<br>Non solo un servizio, ma una visione: trasformare il verde in design, creare ambienti che riflettano personalità, comfort ed estetica.</p>
-    <p>Ciò che ci unisce è la passione per il dettaglio, la cura per i tempi di consegna e un rapporto diretto e sincero con ogni cliente. Ogni progetto è unico, come chi lo vive.</p>
+<section class="about-page">
+  <div class="about-page-top">
+    <h1 class="display" data-reveal>Un percorso condiviso, radici comuni</h1>
+    <div class="prose" data-reveal style="--d:120ms">
+      <p>Green Designer nasce dall’esperienza condivisa di due professionisti che, dopo anni di lavoro nella stessa azienda, hanno deciso di dare forma a un progetto tutto loro.</p>
+      <p>Non solo un servizio, ma una visione: trasformare il verde in design, creare ambienti che riflettano personalità, comfort ed estetica.<br>Ciò che ci unisce è la passione per il dettaglio, la cura per i tempi di consegna e un rapporto diretto e sincero con ogni cliente. Ogni progetto è unico, come chi lo vive.</p>
+    </div>
   </div>
-</div></section>
-
-<section class="band" data-slideshow>
-  <img class="is-active" src="assets/img/giardiniere-1.jpg" alt="Giardiniere al lavoro su una siepe" data-parallax="0.1">
-  <img src="assets/img/giardiniere-2.jpg" alt="Giardiniere con grembiule" loading="lazy">
-  <img src="assets/img/giardiniere-3.jpg" alt="Giardiniera sorridente" loading="lazy">
-</section>
-
-<section class="team">
-  <h2 class="display" data-reveal>Scopri il team</h2>
-  <div class="team-grid">
-    <article class="member" data-reveal>
-      <img src="assets/img/giardiniere-2.jpg" alt="Mario Rossi" loading="lazy">
-      <p class="role">Progettista paesaggista</p>
-      <h3>Mario Rossi</h3>
-      <p>Questo è lo spazio per descrivere il membro del team. Scrivi una breve descrizione del ruolo e delle responsabilità di questa persona, oppure aggiungi una breve biografia con un riepilogo di background. Evidenzia le sue competenze e spiega cosa lo rende una risorsa per il team.</p>
-    </article>
-    <article class="member" data-reveal style="--d:120ms">
-      <img src="assets/img/giardiniere-3.jpg" alt="Francesca Rossi" loading="lazy">
-      <p class="role">Giardiniere capo</p>
-      <h3>Francesca Rossi</h3>
-      <p>Questo è lo spazio per descrivere il membro del team. Scrivi una breve descrizione del ruolo e delle responsabilità di questa persona, oppure aggiungi una breve biografia con un riepilogo di background. Evidenzia le sue competenze e spiega cosa lo rende una risorsa per il team.</p>
-    </article>
-  </div>
+  <figure class="about-page-img" data-reveal><img src="assets/img/giardiniere-1.jpg" alt="Giardiniere al lavoro su una siepe di tuie" data-parallax="0.08"></figure>
 </section>
 
 
@@ -75,8 +54,8 @@
   <img class="contact-mark" src="assets/img/logo-filigrana.png" alt="" loading="lazy" aria-hidden="true">
   <div class="contact-in">
     <div class="contact-text" data-reveal>
-      <h2>Lavora Con Noi<br><span>Vuoi far parte del nostro team?</span></h2>
-      <p>Inviaci un'e-mail e ti risponderemo il prima possibile</p>
+      <h2>Lavora Con Noi</h2>
+      <p>Vuoi far parte del nostro team?<br><small>Inviaci un’e-mail e ti risponderemo il prima possibile</small></p>
       <address>
         <p><strong>Gian &amp; Luca Giardini snc</strong><br><a href="https://www.google.com/maps/place/Via+S.+Martino,+36,+20074+Carpiano+MI/@45.3411237,9.2703061,17z" target="_blank" rel="noopener">Via San Martino 36, 20074 Carpiano (MI)</a></p>
         <p><strong>Gian:</strong> <a href="tel:+393490099264">349 009 9264</a><br><strong>Luca:</strong> <a href="tel:+393665047272">366 504 7272</a></p>
@@ -96,15 +75,9 @@
   <label class="field"><span>Messaggio</span><textarea name="messaggio" rows="3"></textarea></label>
   <label class="field"><span>Seleziona</span>
     <select name="tipo">
-      <option>Nuovo Progetto</option>
-      <option>Progettazione paesaggistica e su misura</option>
-      <option>Realizzazione laghetti, camminamenti e aree relax</option>
-      <option>Manutenzione ordinaria e straordinaria</option>
-      <option>Abbattimenti e potature speciali in tree climbing</option>
-      <option>Trattamenti fitosanitari certificati</option>
-      <option>Posa e fornitura di piante ornamentali</option>
-      <option>Impianti di irrigazione e illuminazione</option>
-      <option>Altro</option>
+      <option>Manutenzione Ordinaria</option>
+      <option selected>Nuovo Progetto</option>
+      <option>Revisione Progetto Esistente</option>
     </select>
   </label>
   <label class="field"><span>Budget disponibile</span><input type="text" name="budget" placeholder="Esempio: 3000€, oppure 'non definito'"><small>Se vuoi, indicaci il tuo budget indicativo</small></label>
@@ -131,12 +104,13 @@
       <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
     </ul>
     <div class="footer-legal">
-      <span>© 2025 Green Designers. Powered by <a href="https://www.wedooo.it/" target="_blank" rel="noopener">WeDooo.it</a></span>
+      <span>© 2026 Green Designers. Powered by <a href="https://www.crapanzano.work/luce/siti-web/" target="_blank" rel="noopener">Mattia Crapanzano</a></span>
       <span>P.IVA 14093460963</span>
       <a href="mailto:gianelucagiardini@gmail.com">gianelucagiardini@gmail.com</a>
     </div>
   </div>
 </footer>
+<a class="fab" href="contatti.html" data-fab aria-label="Richiedi un sopralluogo gratuito"><span>Sopralluogo gratuito</span></a>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

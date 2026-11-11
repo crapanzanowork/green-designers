@@ -17,6 +17,7 @@
 </head>
 <body class="home">
 <a class="skip" href="#main">Passa al contenuto principale</a>
+<div class="progress" data-progress aria-hidden="true"></div>
 
 <header class="site-header" data-header>
   <a class="brand" href="index.html" aria-label="Green Designers – Home"><img src="assets/img/logo-bianco.png" alt="Green Designers" width="237" height="237"></a>
@@ -157,12 +158,21 @@
   </div>
   <div class="testi-body">
     <h2 class="display" data-reveal>Ci piace lasciare parlare chi ha già scelto Green Designer.<br><span>Ecco cosa raccontano i nostri clienti.</span></h2>
-    <div class="quote-slider" data-quotes>
+    <div class="quote-slider" data-quotes aria-live="polite">
       <blockquote class="quote is-active">
         <p>"Il nostro giardino è diventato un’estensione della casa: elegante, curato, su misura. Green Designer ha colto esattamente quello che avevamo in mente, superando ogni aspettativa."</p>
         <footer>Martina R., Milano</footer>
       </blockquote>
+      <blockquote class="quote">
+        <p>"Seri, precisi e professionali. Ci hanno seguito passo dopo passo nella realizzazione di un giardino condominiale funzionale e bellissimo. Puntuali e affidabili."</p>
+        <footer>Amministrazione Condominio Le Palme, Pavia</footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“Non sono solo giardinieri: sono veri progettisti del verde. Hanno trasformato il nostro terrazzo in uno spazio da vivere ogni giorno.”</p>
+        <footer>Luca e Chiara, Lodi</footer>
+      </blockquote>
     </div>
+    <div class="quote-dots" data-qdots aria-hidden="true"><span class="on"></span><span></span><span></span></div>
     <div class="arrows">
       <button type="button" class="arrow" aria-label="Recensione precedente" data-qprev>←</button>
       <button type="button" class="arrow" aria-label="Recensione successiva" data-qnext>→</button>
@@ -196,15 +206,9 @@
   <label class="field"><span>Messaggio</span><textarea name="messaggio" rows="3"></textarea></label>
   <label class="field"><span>Seleziona</span>
     <select name="tipo">
-      <option>Nuovo Progetto</option>
-      <option>Progettazione paesaggistica e su misura</option>
-      <option>Realizzazione laghetti, camminamenti e aree relax</option>
-      <option>Manutenzione ordinaria e straordinaria</option>
-      <option>Abbattimenti e potature speciali in tree climbing</option>
-      <option>Trattamenti fitosanitari certificati</option>
-      <option>Posa e fornitura di piante ornamentali</option>
-      <option>Impianti di irrigazione e illuminazione</option>
-      <option>Altro</option>
+      <option>Manutenzione Ordinaria</option>
+      <option selected>Nuovo Progetto</option>
+      <option>Revisione Progetto Esistente</option>
     </select>
   </label>
   <label class="field"><span>Budget disponibile</span><input type="text" name="budget" placeholder="Esempio: 3000€, oppure 'non definito'"><small>Se vuoi, indicaci il tuo budget indicativo</small></label>
@@ -231,12 +235,13 @@
       <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
     </ul>
     <div class="footer-legal">
-      <span>© 2025 Green Designers. Powered by <a href="https://www.wedooo.it/" target="_blank" rel="noopener">WeDooo.it</a></span>
+      <span>© 2026 Green Designers. Powered by <a href="https://www.crapanzano.work/luce/siti-web/" target="_blank" rel="noopener">Mattia Crapanzano</a></span>
       <span>P.IVA 14093460963</span>
       <a href="mailto:gianelucagiardini@gmail.com">gianelucagiardini@gmail.com</a>
     </div>
   </div>
 </footer>
+<a class="fab" href="contatti.html" data-fab aria-label="Richiedi un sopralluogo gratuito"><span>Sopralluogo gratuito</span></a>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>

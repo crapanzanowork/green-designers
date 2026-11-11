@@ -6,13 +6,20 @@
 
   /* header: solido dopo lo scroll, si nasconde scendendo e riappare salendo */
   const header = $('[data-header]');
+  const progress = $('[data-progress]');
+  const fab = $('[data-fab]');
   let lastY = scrollY;
   const onHeader = () => {
     const y = scrollY;
     header.classList.toggle('is-solid', y > 40);
-    header.classList.toggle('is-hidden', y > 400 && y > lastY + 4 && !body.classList.contains('menu-open'));
-    if (y < lastY - 4) header.classList.remove('is-hidden');
+    if (!body.classList.contains('menu-open')) {
+      if (y > lastY + 3 && y > 80) header.classList.add('is-hidden');
+      else if (y < lastY - 3 || y < 80) header.classList.remove('is-hidden');
+    }
     lastY = y;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (progress) progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (fab) fab.classList.toggle('show', y > innerHeight * 0.7);
   };
 
   /* menu */
@@ -79,14 +86,22 @@
     track.addEventListener('click', (e) => { if (moved) e.preventDefault(); }, true);
   }
 
-  /* citazioni (una sola per ora, ma pronto per altre) */
+  /* recensioni: scorrono da sole ogni 6s, frecce e puntini */
   const qs = $('[data-quotes]');
   if (qs) {
-    const items = $$('.quote', qs);
-    let i = 0;
-    const show = (n) => { items[i].classList.remove('is-active'); i = (n + items.length) % items.length; items[i].classList.add('is-active'); };
-    $('[data-qprev]').addEventListener('click', () => show(i - 1));
-    $('[data-qnext]').addEventListener('click', () => show(i + 1));
+    const items = $$('.quote', qs), dots = $$('[data-qdots] span');
+    let i = 0, timer;
+    const show = (n) => {
+      items[i].classList.remove('is-active'); dots[i].classList.remove('on');
+      i = (n + items.length) % items.length;
+      items[i].classList.add('is-active'); dots[i].classList.add('on');
+    };
+    const play = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => show(i + 1), 6000); };
+    $('[data-qprev]').addEventListener('click', () => { show(i - 1); play(); });
+    $('[data-qnext]').addEventListener('click', () => { show(i + 1); play(); });
+    qs.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
+    qs.parentElement.addEventListener('mouseleave', play);
+    play();
   }
 
   /* slideshow della fascia in "Chi Siamo" */
@@ -95,6 +110,25 @@
     const imgs = $$('img', ss);
     let i = 0;
     setInterval(() => { imgs[i].classList.remove('is-active'); i = (i + 1) % imgs.length; imgs[i].classList.add('is-active'); }, 4500);
+  }
+
+  /* transizione tra pagine */
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || a.target || a.hasAttribute('download')) return;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || (u.pathname === location.pathname && u.hash)) return;
+    e.preventDefault(); body.classList.add('leaving');
+    setTimeout(() => { location.href = a.href; }, 220);
+  });
+  addEventListener('pageshow', (e) => { if (e.persisted) body.classList.remove('leaving'); });
+
+  /* cursore "Trascina" sulla galleria (solo mouse) */
+  if (track && matchMedia('(hover:hover)').matches) {
+    const c = document.createElement('div'); c.className = 'cursor'; c.textContent = 'Trascina'; body.appendChild(c);
+    track.addEventListener('mouseenter', () => c.classList.add('on'));
+    track.addEventListener('mouseleave', () => c.classList.remove('on'));
+    track.addEventListener('mousemove', (e) => { c.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; });
   }
 
   /* modulo: validazione e invio via programma di posta (sito statico, nessun server) */

@@ -58,7 +58,7 @@ const footer = (b) => `
       <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
     </ul>
     <div class="footer-legal">
-      <span>© 2025 Green Designers. Powered by <a href="https://www.wedooo.it/" target="_blank" rel="noopener">WeDooo.it</a></span>
+      <span>© 2026 Green Designers. Powered by <a href="https://www.crapanzano.work/luce/siti-web/" target="_blank" rel="noopener">Mattia Crapanzano</a></span>
       <span>P.IVA 14093460963</span>
       <a href="mailto:${EMAIL}">${EMAIL}</a>
     </div>
@@ -78,9 +78,9 @@ const form = (id) => `
   <label class="field"><span>Messaggio</span><textarea name="messaggio" rows="3"></textarea></label>
   <label class="field"><span>Seleziona</span>
     <select name="tipo">
-      <option>Nuovo Progetto</option>
-      ${SERVICES.map(([t]) => `<option>${esc(t)}</option>`).join('\n      ')}
-      <option>Altro</option>
+      <option>Manutenzione Ordinaria</option>
+      <option selected>Nuovo Progetto</option>
+      <option>Revisione Progetto Esistente</option>
     </select>
   </label>
   <label class="field"><span>Budget disponibile</span><input type="text" name="budget" placeholder="Esempio: 3000€, oppure 'non definito'"><small>Se vuoi, indicaci il tuo budget indicativo</small></label>
@@ -126,11 +126,13 @@ const page = ({ file, title, desc, body, active = '', depth = 0, bodyClass = '' 
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Passa al contenuto principale</a>
+<div class="progress" data-progress aria-hidden="true"></div>
 ${header(b, active)}
 <main id="main">
 ${body(b)}
 </main>
 ${footer(b)}
+<a class="fab" href="${b}contatti.html" data-fab aria-label="Richiedi un sopralluogo gratuito"><span>Sopralluogo gratuito</span></a>
 <script src="${b}assets/js/main.js" defer></script>
 </body>
 </html>
@@ -251,12 +253,21 @@ const homeBody = (b) => `
   </div>
   <div class="testi-body">
     <h2 class="display" data-reveal>Ci piace lasciare parlare chi ha già scelto Green Designer.<br><span>Ecco cosa raccontano i nostri clienti.</span></h2>
-    <div class="quote-slider" data-quotes>
+    <div class="quote-slider" data-quotes aria-live="polite">
       <blockquote class="quote is-active">
         <p>"Il nostro giardino è diventato un’estensione della casa: elegante, curato, su misura. Green Designer ha colto esattamente quello che avevamo in mente, superando ogni aspettativa."</p>
         <footer>Martina R., Milano</footer>
       </blockquote>
+      <blockquote class="quote">
+        <p>"Seri, precisi e professionali. Ci hanno seguito passo dopo passo nella realizzazione di un giardino condominiale funzionale e bellissimo. Puntuali e affidabili."</p>
+        <footer>Amministrazione Condominio Le Palme, Pavia</footer>
+      </blockquote>
+      <blockquote class="quote">
+        <p>“Non sono solo giardinieri: sono veri progettisti del verde. Hanno trasformato il nostro terrazzo in uno spazio da vivere ogni giorno.”</p>
+        <footer>Luca e Chiara, Lodi</footer>
+      </blockquote>
     </div>
+    <div class="quote-dots" data-qdots aria-hidden="true"><span class="on"></span><span></span><span></span></div>
     <div class="arrows">
       <button type="button" class="arrow" aria-label="Recensione precedente" data-qprev>←</button>
       <button type="button" class="arrow" aria-label="Recensione successiva" data-qnext>→</button>
@@ -273,40 +284,18 @@ page({ file: 'index.html', title: 'Home', desc: 'Il verde non è solo natura, è
 page({
   file: 'chi-siamo.html', title: 'Chi Siamo', desc: 'Green Designer nasce dall’esperienza condivisa di due professionisti del verde: passione per il dettaglio, cura dei tempi e rapporto diretto con ogni cliente.', active: 'chi-siamo.html', bodyClass: 'inner',
   body: (b) => `
-<section class="page-top"><div class="page-top-in">
-  <p class="eyebrow" data-reveal>Chi Siamo</p>
-  <h1 class="display" data-reveal style="--d:80ms">Un percorso condiviso, radici comuni</h1>
-  <div class="prose two-col" data-reveal style="--d:160ms">
-    <p>Green Designer nasce dall’esperienza condivisa di due professionisti che, dopo anni di lavoro nella stessa azienda, hanno deciso di dare forma a un progetto tutto loro.<br>Non solo un servizio, ma una visione: trasformare il verde in design, creare ambienti che riflettano personalità, comfort ed estetica.</p>
-    <p>Ciò che ci unisce è la passione per il dettaglio, la cura per i tempi di consegna e un rapporto diretto e sincero con ogni cliente. Ogni progetto è unico, come chi lo vive.</p>
+<section class="about-page">
+  <div class="about-page-top">
+    <h1 class="display" data-reveal>Un percorso condiviso, radici comuni</h1>
+    <div class="prose" data-reveal style="--d:120ms">
+      <p>Green Designer nasce dall’esperienza condivisa di due professionisti che, dopo anni di lavoro nella stessa azienda, hanno deciso di dare forma a un progetto tutto loro.</p>
+      <p>Non solo un servizio, ma una visione: trasformare il verde in design, creare ambienti che riflettano personalità, comfort ed estetica.<br>Ciò che ci unisce è la passione per il dettaglio, la cura per i tempi di consegna e un rapporto diretto e sincero con ogni cliente. Ogni progetto è unico, come chi lo vive.</p>
+    </div>
   </div>
-</div></section>
-
-<section class="band" data-slideshow>
-  <img class="is-active" src="${b}assets/img/giardiniere-1.jpg" alt="Giardiniere al lavoro su una siepe" data-parallax="0.1">
-  <img src="${b}assets/img/giardiniere-2.jpg" alt="Giardiniere con grembiule" loading="lazy">
-  <img src="${b}assets/img/giardiniere-3.jpg" alt="Giardiniera sorridente" loading="lazy">
+  <figure class="about-page-img" data-reveal><img src="${b}assets/img/giardiniere-1.jpg" alt="Giardiniere al lavoro su una siepe di tuie" data-parallax="0.08"></figure>
 </section>
 
-<section class="team">
-  <h2 class="display" data-reveal>Scopri il team</h2>
-  <div class="team-grid">
-    <article class="member" data-reveal>
-      <img src="${b}assets/img/giardiniere-2.jpg" alt="Mario Rossi" loading="lazy">
-      <p class="role">Progettista paesaggista</p>
-      <h3>Mario Rossi</h3>
-      <p>Questo è lo spazio per descrivere il membro del team. Scrivi una breve descrizione del ruolo e delle responsabilità di questa persona, oppure aggiungi una breve biografia con un riepilogo di background. Evidenzia le sue competenze e spiega cosa lo rende una risorsa per il team.</p>
-    </article>
-    <article class="member" data-reveal style="--d:120ms">
-      <img src="${b}assets/img/giardiniere-3.jpg" alt="Francesca Rossi" loading="lazy">
-      <p class="role">Giardiniere capo</p>
-      <h3>Francesca Rossi</h3>
-      <p>Questo è lo spazio per descrivere il membro del team. Scrivi una breve descrizione del ruolo e delle responsabilità di questa persona, oppure aggiungi una breve biografia con un riepilogo di background. Evidenzia le sue competenze e spiega cosa lo rende una risorsa per il team.</p>
-    </article>
-  </div>
-</section>
-
-${contactBlock(b, { id: 'lavora-con-noi', h2: 'Lavora Con Noi<br><span>Vuoi far parte del nostro team?</span>', intro: 'Inviaci un\'e-mail e ti risponderemo il prima possibile' })}
+${contactBlock(b, { id: 'lavora-con-noi', h2: 'Lavora Con Noi', intro: 'Vuoi far parte del nostro team?<br><small>Inviaci un’e-mail e ti risponderemo il prima possibile</small>' })}
 `,
 });
 
@@ -402,49 +391,92 @@ for (const p of posts) {
 }
 
 // ---------- LEGALI ----------
-const legal = (file, title, html, desc) => page({ file, title, desc, bodyClass: 'inner legal', body: () => `<article class="legal-article"><h1 class="display">${title}</h1>${html}</article>` });
+const legal = (file, title, html, desc) => page({ file, title, desc, bodyClass: 'inner legal', body: () => `<article class="legal-article"><h1 class="display">${title}</h1><p class="updated">Ultimo aggiornamento: 11 novembre 2026</p>${html}</article>` });
+
+const TITOLARE = `Gianluca Saresini – Green Designers, progettazione e realizzazione aree verdi<br>Via San Martino n°36, 20074 Carpiano (MI)<br>P.IVA 14093460963<br>Email: <a href="mailto:${EMAIL}">${EMAIL}</a> · PEC: <a href="mailto:${PEC}">${PEC}</a>`;
 
 legal('terms-and-conditions.html', 'Terms &amp; Conditions', `
-<h2>1. Informazioni generali</h2>
-<p>Questo sito è di proprietà di:<br>Gianluca Saresini<br>Green Designers – Progettazione e Realizzazione Aree Verdi<br>Via San Martino n°36, 20074 Carpiano (MI)<br>P.IVA: 14093460963<br>Email: <a href="mailto:${EMAIL}">${EMAIL}</a></p>
-<p>Accedendo a questo sito web, l’utente accetta di rispettare i presenti termini e condizioni.</p>
-<h2>2. Contenuti del sito</h2>
-<p>Tutti i contenuti presenti (testi, immagini, grafiche, elementi visivi) sono di proprietà di Green Designers o utilizzati con licenza. È vietata la riproduzione, distribuzione o modifica, anche parziale, dei contenuti, salvo consenso esplicito del titolare.</p>
-<h2>3. Responsabilità</h2>
-<p>Green Designers non è responsabile per eventuali malfunzionamenti, errori o interruzioni del sito, né per l’accuratezza assoluta delle informazioni pubblicate. Le informazioni hanno scopo illustrativo e non costituiscono offerta contrattuale.</p>
-<h2>4. Link a siti terzi</h2>
-<p>Il sito può contenere link esterni. Green Designers non è responsabile per i contenuti o la privacy di tali siti.</p>
-<h2>5. Modifiche ai termini</h2>
-<p>Il titolare si riserva il diritto di modificare i presenti termini in qualsiasi momento. Le modifiche saranno efficaci dal momento della pubblicazione online.</p>`, 'Termini e condizioni di utilizzo del sito Green Designers.');
+<h2>1. Titolare del sito</h2>
+<p>Questo sito è gestito da:<br>${TITOLARE}</p>
+<p>Accedendo e navigando nel sito, l’utente dichiara di aver letto e accettato i presenti termini. Se non li accetta, è invitato a non utilizzare il sito.</p>
+<h2>2. Natura delle informazioni</h2>
+<p>Il sito ha scopo informativo e di presentazione dei servizi di progettazione, realizzazione e manutenzione di aree verdi. Testi, descrizioni dei progetti, immagini e tempistiche indicate sono illustrativi e non costituiscono offerta al pubblico ai sensi dell’art. 1336 del Codice civile né preventivo vincolante. Ogni prestazione è regolata da un preventivo o contratto scritto, concordato dopo sopralluogo.</p>
+<p>Il sito non permette l’acquisto online di beni o servizi.</p>
+<h2>3. Proprietà intellettuale</h2>
+<p>Testi, fotografie, grafiche, marchi, loghi e struttura del sito sono di proprietà di Green Designers o utilizzati con licenza e sono protetti dalla normativa sul diritto d’autore (Legge 633/1941) e sui segni distintivi. È vietata la riproduzione, la distribuzione o la modifica, anche parziale, senza consenso scritto del titolare, salvo i limiti inderogabili di legge.</p>
+<h2>4. Uso corretto del sito</h2>
+<p>L’utente si impegna a non usare il sito per scopi illeciti, a non comprometterne il funzionamento e a non inviare tramite il modulo contatti contenuti offensivi, illeciti o dati di terzi senza averne il diritto.</p>
+<h2>5. Limitazione di responsabilità</h2>
+<p>Il titolare cura l’accuratezza dei contenuti ma non garantisce l’assenza di errori, omissioni, interruzioni o malfunzionamenti del sito. Nei limiti consentiti dalla legge, non risponde dei danni derivanti dall’uso del sito o dall’affidamento sulle informazioni pubblicate. Restano ferme le responsabilità che la legge non permette di escludere e i diritti inderogabili dei consumatori.</p>
+<h2>6. Link a siti terzi</h2>
+<p>Il sito può contenere collegamenti a siti di terzi (ad esempio mappe, social network o il sito dello sviluppatore). Il titolare non controlla tali siti e non è responsabile dei loro contenuti, delle loro politiche sulla privacy o dei loro cookie.</p>
+<h2>7. Protezione dei dati personali</h2>
+<p>Il trattamento dei dati personali è descritto nella <a href="privacy-policy.html">Privacy Policy</a>.</p>
+<h2>8. Modifiche</h2>
+<p>Il titolare può modificare in qualsiasi momento il sito e i presenti termini. Le modifiche hanno effetto dalla pubblicazione; la data di ultimo aggiornamento è indicata in alto.</p>
+<h2>9. Legge applicabile e foro competente</h2>
+<p>I presenti termini sono regolati dalla legge italiana. Per ogni controversia è competente il foro del titolare, salvo che l’utente sia un consumatore: in tal caso resta competente il giudice del luogo di residenza o domicilio del consumatore (artt. 33 e 66-bis del Codice del Consumo, D.Lgs. 206/2005).</p>`, 'Termini e condizioni di utilizzo del sito Green Designers.');
 
 legal('privacy-policy.html', 'Privacy Policy', `
+<p>Informativa sul trattamento dei dati personali ai sensi degli artt. 13 e 14 del Regolamento (UE) 2016/679 (“GDPR”) e del D.Lgs. 196/2003 (Codice Privacy) come modificato dal D.Lgs. 101/2018.</p>
 <h2>1. Titolare del trattamento</h2>
-<p>Ai sensi del Regolamento (UE) 2016/679 (GDPR), il titolare del trattamento dei dati è:<br>Gianluca Saresini<br>Green Designers – Progettazione e Realizzazione Aree Verdi<br>Via San Martino n°36, 20074 Carpiano (MI)<br>Email: <a href="mailto:${EMAIL}">${EMAIL}</a></p>
-<h2>2. Dati raccolti</h2>
-<p>Il sito raccoglie dati personali esclusivamente attraverso il modulo di contatto. I dati richiesti possono includere:</p>
-<ul><li>Nome e cognome</li><li>Indirizzo email</li><li>Numero di telefono</li><li>Altri dati eventualmente forniti nel messaggio</li></ul>
-<p>Tali dati vengono trattati esclusivamente per finalità informative o commerciali legate ai servizi offerti (progettazione, realizzazione e manutenzione aree verdi).</p>
-<h2>3. Base giuridica del trattamento</h2>
-<p>Il trattamento è lecito in quanto:</p>
-<ul><li>avviene su richiesta volontaria dell’utente (art. 6, par. 1, lett. b GDPR);</li><li>è necessario per dare seguito a una richiesta informativa o preventivo.</li></ul>
-<h2>4. Modalità di trattamento</h2>
-<p>I dati sono trattati tramite strumenti elettronici e/o cartacei, con adeguate misure di sicurezza a tutela della riservatezza e integrità. Non vengono ceduti a terzi, né trasferiti fuori dallo Spazio Economico Europeo.</p>
-<h2>5. Periodo di conservazione</h2>
-<p>I dati sono trattati tramite strumenti elettronici e/o cartacei, con adeguate misure di sicurezza a tutela della riservatezza e integrità. Non vengono ceduti a terzi, né trasferiti fuori dallo Spazio Economico Europeo.</p>
-<h2>6. Diritti dell'interessato</h2>
-<p>L’utente ha il diritto di:</p>
-<ul><li>accedere ai propri dati;</li><li>richiederne la rettifica o cancellazione;</li><li>opporsi al trattamento o richiederne la limitazione;</li><li>proporre reclamo al Garante per la protezione dei dati personali.</li></ul>
-<p>Per esercitare i propri diritti, è possibile scrivere a: <a href="mailto:${EMAIL}">${EMAIL}</a></p>
-<h2>7. Cookie</h2>
-<p>Il sito utilizza cookie tecnici necessari al funzionamento della piattaforma. In futuro, potranno essere utilizzati cookie di terze parti (es. Meta Pixel, Google Analytics) per fini statistici e/o pubblicitari. All’accesso al sito verrà mostrato un banner per la gestione del consenso, secondo normativa vigente.</p>`, 'Informativa sul trattamento dei dati personali di Green Designers.');
+<p>${TITOLARE}</p>
+<h2>2. Quali dati trattiamo</h2>
+<ul>
+<li><strong>Dati forniti volontariamente dall’utente</strong> tramite il modulo contatti o scrivendoci per email o telefono: nome e cognome, indirizzo email, numero di telefono (facoltativo), tipo di richiesta, budget indicativo (facoltativo) e ogni altra informazione inserita nel messaggio.</li>
+<li><strong>Dati di navigazione</strong>: come ogni sito web, i server che ospitano il sito (vedi punto 5) possono registrare in modo automatico dati tecnici come indirizzo IP, data e ora della richiesta, pagina richiesta e tipo di browser. Il titolare non ha accesso a tali registri né li utilizza per identificare gli utenti.</li>
+</ul>
+<p>Invitiamo a non inserire nel messaggio dati particolari (art. 9 GDPR, ad esempio dati sulla salute) né dati di terzi senza averne titolo.</p>
+<h2>3. Come funziona il modulo contatti</h2>
+<p>Il sito non ha un server proprio che riceve i dati del modulo. Premendo “Raccontaci il tuo progetto”, il sito apre il programma di posta elettronica dell’utente con un messaggio già compilato, indirizzato al titolare: i dati vengono trasmessi solo se e quando l’utente invia quel messaggio, tramite il proprio fornitore di posta.</p>
+<h2>4. Finalità e basi giuridiche</h2>
+<ul>
+<li>Rispondere alle richieste, fissare sopralluoghi e predisporre preventivi: <em>esecuzione di misure precontrattuali su richiesta dell’interessato</em> (art. 6, par. 1, lett. b GDPR).</li>
+<li>Gestione del rapporto contrattuale e adempimenti amministrativi, contabili e fiscali, se la richiesta si trasforma in incarico: <em>esecuzione del contratto</em> e <em>obbligo di legge</em> (art. 6, par. 1, lett. b e c).</li>
+<li>Tutela dei diritti del titolare in sede stragiudiziale o giudiziale: <em>legittimo interesse</em> (art. 6, par. 1, lett. f).</li>
+</ul>
+<p>Il conferimento dei dati contrassegnati con * nel modulo è necessario per poter rispondere; il conferimento degli altri è facoltativo. Non effettuiamo invii di newsletter o comunicazioni promozionali né profilazione, e non adottiamo processi decisionali automatizzati.</p>
+<h2>5. Destinatari dei dati e trasferimenti</h2>
+<p>I dati possono essere trattati da collaboratori autorizzati del titolare e da fornitori che agiscono come responsabili del trattamento (ad esempio il fornitore del servizio di posta elettronica e, per gli aspetti fiscali, il commercialista). Non vendiamo né cediamo i dati a terzi per finalità proprie.</p>
+<p>Il sito è ospitato su <strong>GitHub Pages</strong> (GitHub, Inc., Stati Uniti), che in qualità di fornitore di hosting può registrare dati tecnici di navigazione. Il trasferimento negli Stati Uniti avviene sulla base delle garanzie previste dal GDPR (decisione di adeguatezza UE–USA “Data Privacy Framework” per i soggetti certificati e/o clausole contrattuali standard). Altri trasferimenti fuori dallo Spazio Economico Europeo non sono previsti dal titolare.</p>
+<h2>6. Periodo di conservazione</h2>
+<ul>
+<li>Richieste di contatto non seguite da incarico: per il tempo necessario a rispondere e, di norma, non oltre 24 mesi dall’ultimo contatto.</li>
+<li>Dati relativi a incarichi e fatturazione: per la durata del rapporto e per i successivi 10 anni, secondo gli obblighi civilistici e fiscali (art. 2220 Codice civile).</li>
+<li>Dati necessari a far valere o difendere un diritto: fino alla definizione della controversia e dei termini di prescrizione.</li>
+</ul>
+<h2>7. Cookie e tecnologie di tracciamento</h2>
+<p>Questo sito <strong>non utilizza cookie né altri strumenti di tracciamento</strong>, né di profilazione né di analisi statistica di terze parti, e non carica script, font o contenuti da servizi esterni. Non è quindi richiesto un banner di consenso ai sensi dell’art. 122 del Codice Privacy e delle Linee guida cookie del Garante (10 giugno 2021). Se in futuro verranno introdotti strumenti che lo richiedono (ad esempio statistiche o pixel pubblicitari), questa informativa sarà aggiornata e il consenso sarà raccolto prima del loro uso.</p>
+<p>Il sito contiene collegamenti a servizi di terzi (ad esempio Google Maps o Instagram): cliccandoli l’utente lascia il sito ed è soggetto alle informative di tali soggetti.</p>
+<h2>8. Diritti dell’interessato</h2>
+<p>Scrivendo a <a href="mailto:${EMAIL}">${EMAIL}</a> l’utente può in ogni momento esercitare i diritti previsti dagli artt. 15–22 GDPR: accesso ai propri dati, rettifica, cancellazione, limitazione del trattamento, portabilità e opposizione al trattamento fondato sul legittimo interesse. Il titolare risponde entro un mese dalla richiesta, prorogabile in casi complessi (art. 12 GDPR).</p>
+<p>L’utente ha inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>) o all’autorità giudiziaria.</p>
+<h2>9. Minori</h2>
+<p>Il sito e i servizi sono rivolti a persone maggiorenni. Non raccogliamo consapevolmente dati di minori di 14 anni.</p>
+<h2>10. Modifiche all’informativa</h2>
+<p>Questa informativa può essere aggiornata, ad esempio per adeguarla a novità normative. La versione in vigore è sempre quella pubblicata in questa pagina, con la data di ultimo aggiornamento.</p>`, 'Informativa sul trattamento dei dati personali (GDPR) e sui cookie di Green Designers.');
 
 legal('accessibility-statement.html', 'Accessibility Statement', `
-<p>Green Designers si impegna a rendere il proprio sito web accessibile in conformità alla Direttiva (UE) 2016/2102. Il sito favorisce l’accessibilità, tra l’altro, con:</p>
-<ul><li>Navigazione da tastiera</li><li>Testi alternativi per immagini (in aggiornamento)</li><li>Contrasto visivo sufficiente</li></ul>
-<h2>Stato attuale di accessibilità</h2>
-<p>Al momento, alcune funzionalità di accessibilità sono in fase di implementazione. Il sito sarà progressivamente adeguato per garantire un'esperienza inclusiva a tutti gli utenti.</p>
-<h2>Segnalazioni</h2>
-<p>Per segnalare problemi di accessibilità o ricevere assistenza, è possibile contattare:<br>Gianluca Saresini<br>📩 <a href="mailto:${EMAIL}">${EMAIL}</a></p>
-<p class="updated">Ultimo aggiornamento 01 settembre 2025</p>`, 'Dichiarazione di accessibilità del sito Green Designers.');
+<p>Green Designers vuole che il proprio sito sia utilizzabile da tutte le persone, comprese quelle con disabilità, e lavora per renderlo conforme alle <strong>WCAG 2.1 livello AA</strong>, lo standard di riferimento richiamato dalla normativa europea e italiana (Direttiva (UE) 2019/882 “European Accessibility Act”, recepita dal D.Lgs. 82/2022, in applicazione dal 28 giugno 2025; Legge 4/2004).</p>
+<p>Il sito è offerto da una microimpresa e non permette l’acquisto online di prodotti o servizi, quindi gli obblighi formali di conformità dell’European Accessibility Act non si applicano direttamente; l’impegno ad accessibilità e usabilità è comunque volontario e proseguirà nel tempo.</p>
+<h2>Cosa abbiamo fatto</h2>
+<ul>
+<li>Struttura semantica delle pagine (titoli, elenchi, regioni principali) e lingua dichiarata (italiano).</li>
+<li>Navigazione completa da tastiera, con indicatore di focus visibile e link “Passa al contenuto principale”.</li>
+<li>Menu, galleria e recensioni utilizzabili anche senza mouse e con etichette per i lettori di schermo.</li>
+<li>Testi alternativi per le immagini informative; le immagini puramente decorative sono nascoste agli strumenti di assistenza.</li>
+<li>Rispetto dell’impostazione di sistema “Riduci movimento”: animazioni e scorrimenti automatici vengono disattivati.</li>
+<li>Testi ridimensionabili e layout adattabile a telefono, tablet e computer.</li>
+</ul>
+<h2>Limiti noti</h2>
+<ul>
+<li>Il video dei fiori nella sezione recensioni è decorativo e privo di audio.</li>
+<li>Alcune descrizioni delle immagini possono essere migliorabili: stiamo proseguendo la revisione.</li>
+<li>Non sono stati ancora eseguiti test formali con tecnologie assistive da parte di un ente terzo.</li>
+</ul>
+<h2>Segnalazioni e assistenza</h2>
+<p>Se incontri una barriera o hai bisogno di un contenuto in un formato diverso, scrivi a Gianluca Saresini, <a href="mailto:${EMAIL}">${EMAIL}</a>, o chiama Gian al 349 009 9264 / Luca al 366 504 7272. Risponderemo entro 30 giorni.</p>
+<p>Per i soggetti obbligati, in caso di risposta insoddisfacente è possibile rivolgersi ad AgID (Agenzia per l’Italia Digitale, <a href="https://www.agid.gov.it" target="_blank" rel="noopener">www.agid.gov.it</a>), autorità competente per la vigilanza sull’accessibilità.</p>
+<p class="updated">Dichiarazione redatta l’11 novembre 2026 sulla base di una valutazione interna.</p>`, 'Dichiarazione di accessibilità del sito Green Designers (WCAG 2.1 AA, European Accessibility Act).');
 
 console.log('Build completata.');
