@@ -19,7 +19,12 @@
     lastY = y;
     const max = document.documentElement.scrollHeight - innerHeight;
     if (progress) progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    if (fab) fab.classList.toggle('show', y > innerHeight * 0.7);
+    if (fab) {
+      const c = $('.contact');
+      const r = c && c.getBoundingClientRect();
+      const onContact = r && r.top < innerHeight && r.bottom > 0;
+      fab.classList.toggle('show', y > innerHeight * 0.7 && !onContact);
+    }
   };
 
   /* menu */

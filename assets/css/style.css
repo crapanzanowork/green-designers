@@ -314,3 +314,9 @@ body.leaving{opacity:0;transition:opacity .25s}
   [data-reveal]{opacity:1;transform:none}
   .hero h1 .line>span,.hero-sub,.hero .btn{transform:none;opacity:1}
 }
+
+/* schermi ultra-larghi (21:9 e oltre): contenuto centrato con larghezza massima */
+.projects,.about,.footer{width:min(100%,1840px);margin-inline:auto}
+.services,.gallery,.why,.testimonials,.contact,.about-page,.post-article,.recent,.legal-article,.service-list,.band{width:min(100% - 2*var(--gap),1800px);margin-inline:auto}
+.page-top{max-width:1840px;margin-inline:auto}
+.trio{max-width:1840px;margin-inline:auto}
